@@ -3,7 +3,7 @@
 #
 # Arguments:
 #   1:DockerHubのログインID
-#   2:DockerHubのパスワード
+#   2:DockerHubのパスワード(base64でエンコードした値)
 #   3:Dockerイメージ名
 #   4:パッケージ名
 #   5:パッケージのバージョン
