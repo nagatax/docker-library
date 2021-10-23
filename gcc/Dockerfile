@@ -32,7 +32,7 @@ RUN set -x; \
        : "システムを最新の状態に更新" \
     && dnf update -y \
     && : "関連パッケージのインストール" \
-    && dnf --enablerepo=PowerTools install -y \
+    && dnf --enablerepo=powertools install -y \
         autoconf \
         autogen \
         automake \
