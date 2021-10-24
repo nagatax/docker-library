@@ -35,7 +35,7 @@ RUN set -x; \
       . ~/.bashrc \
     \
     && : "関連パッケージのインストール" \
-    && dnf install -y --enablerepo=PowerTools \
+    && dnf install -y --enablerepo=powertools \
         autoconf \
         automake \
         bison \
@@ -102,7 +102,7 @@ RUN set -x; \
 RUN set -x; \
       . ~/.bashrc \
     \
-    && dnf install -y --enablerepo=PowerTools \
+    && dnf install -y --enablerepo=powertools \
         # ImageMagick-devel \
         libmemcached-devel \
         libyaml-devel \
@@ -153,7 +153,7 @@ RUN set -x; \
         http://rpms.famillecollet.com/enterprise/remi-release-8.rpm \
     && dnf --enablerepo=remi install -y oniguruma-devel \
     && : "PHP" \
-    && dnf install -y --enablerepo=PowerTools \
+    && dnf install -y --enablerepo=powertools \
         autoconf \
         automake \
         bison \
@@ -171,7 +171,7 @@ RUN set -x; \
         zip \
         unzip \
     && : "Xdebug" \
-    && dnf install -y --enablerepo=PowerTools \
+    && dnf install -y --enablerepo=powertools \
         # ImageMagick-devel \
         libmemcached-devel \
         libyaml-devel \
