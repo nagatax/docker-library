@@ -32,10 +32,10 @@ RUN set -x; \
         --prefix="${INSTALL_DIR}/${PCRE}" \
     && make -j`nproc` \
     && make install \
-    && : "不要なファイルの削除"
-#    && rm -rf "${SRC_DIR}/${PCRE_PAKAGE}" \
-#        "${SRC_DIR}/${PCRE_PAKAGE_FILE}" \
-#        "${BUILD_DIR}/${PCRE_PAKAGE}"
+    && : "不要なファイルの削除" \
+    && rm -rf "${SRC_DIR}/${PCRE_PAKAGE}" \
+        "${SRC_DIR}/${PCRE_PAKAGE_FILE}" \
+        "${BUILD_DIR}/${PCRE_PAKAGE}"
 
 ##################################################
 # nginxのインストール
