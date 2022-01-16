@@ -56,37 +56,6 @@ jobs:
           command: |
             source ./apache/hooks/deploy
 
-  build-gcc:
-    executor: default
-    steps:
-      - checkout
-      - setup_remote_docker:
-          docker_layer_caching: false
-          version: 18.09.3
-      - run:
-          name: Building Docker
-          command: |
-            source ./gcc/hooks/build
-      - run:
-          name: Update system
-          command: |
-            apk update
-            apk upgrade
-      - run:
-          name: Set up inspec environment
-          command: |
-            apk add build-base git libffi-dev libxml2-dev openssh-client ruby ruby-bigdecimal ruby-dev ruby-etc ruby-rdoc ruby-webrick
-            gem install bundler
-            bundle install --path vendor/bundler
-      - run:
-          name: Testing Docker
-          command: |
-            source ./gcc/hooks/post_build
-      - deploy:
-          name: Deploy to Docker Hub
-          command: |
-            source ./gcc/hooks/deploy
-
   build-nginx:
     executor: default
     steps:
@@ -194,11 +163,6 @@ workflows:
           filters:
             branches:
               only: apache/master
-      # - build-gcc:
-      #     context: dockerhub
-      #     filters:
-      #       branches:
-      #         only: gcc/master
       - build-nginx:
           context: dockerhub
           filters:
