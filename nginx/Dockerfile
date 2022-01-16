@@ -33,8 +33,7 @@ RUN set -x; \
     && make -j`nproc` \
     && make install \
     && : "不要なファイルの削除" \
-    && rm -rf "${SRC_DIR}/${PCRE_PAKAGE}" \
-        "${SRC_DIR}/${PCRE_PAKAGE_FILE}" \
+    && rm -rf "${SRC_DIR}/${PCRE_PAKAGE_FILE}" \
         "${BUILD_DIR}/${PCRE_PAKAGE}"
 
 ##################################################
