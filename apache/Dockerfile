@@ -97,7 +97,7 @@ RUN set -x; \
     && : "pcreのインストール" \
     && cd "${SRC_DIR}" \
     && wget --content-disposition "${PCRE_URL}" \
-    && wget --content-disposition "${PCRE_SIG_URL}" \
+#    && wget --content-disposition "${PCRE_SIG_URL}" \
 #    && gpg --verify "${PCRE_PAKAGE_FILE}.sig" \
     && tar xvf "${PCRE_PAKAGE_FILE}" \
     && cd "${BUILD_DIR}/${PCRE_PAKAGE}" \
