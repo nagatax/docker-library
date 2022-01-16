@@ -50,7 +50,8 @@ jobs:
           command: |
             apk add build-base git libffi-dev libxml2-dev openssh-client ruby ruby-bigdecimal ruby-dev ruby-etc ruby-rdoc ruby-webrick
             gem install bundler
-            bundle install --path vendor/bundler
+            bundle config set --local path 'vendor/bundler'
+            bundle install
       - run:
           name: Testing Docker
           command: |
