@@ -10,8 +10,8 @@ ENV PCRE="pcre"
 ENV PCRE_VERSION="8.42"
 ENV PCRE_PAKAGE="${PCRE}-${PCRE_VERSION}"
 ENV PCRE_PAKAGE_FILE="${PCRE_PAKAGE}.tar.gz"
-ENV PCRE_URL="https://ftp.pcre.org/pub/${PCRE}/${PCRE_PAKAGE_FILE}"
-ENV PCRE_SIG_URL="https://ftp.pcre.org/pub/${PCRE}/${PCRE_PAKAGE_FILE}.sig"
+ENV PCRE_URL="https://sourceforge.net/projects/pcre/files/${PCRE}/${PCRE_VERSION}/${PCRE_PAKAGE_FILE}/download"
+ENV PCRE_SIG_URL="https://sourceforge.net/projects/pcre/files/${PCRE}/${PCRE_VERSION}/${PCRE_PAKAGE_FILE}.sig/download"
 
 RUN set -x; \
       . ~/.bashrc \
@@ -23,8 +23,8 @@ RUN set -x; \
     && mkdir -p "${INSTALL_DIR}/${PCRE}" \
     && : "pcreのインストール" \
     && cd "${SRC_DIR}" \
-    && wget "${PCRE_URL}" \
-    && wget "${PCRE_SIG_URL}" \
+    && wget --content-disposition "${PCRE_URL}" \
+#    && wget --content-disposition "${PCRE_SIG_URL}" \
 #    && gpg --verify "${PCRE_PAKAGE_FILE}.sig" \
     && tar xvf "${PCRE_PAKAGE_FILE}" \
     && cd "${PCRE_PAKAGE}" \
