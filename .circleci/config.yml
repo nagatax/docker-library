@@ -14,16 +14,11 @@ jobs:
       - checkout
       - setup_remote_docker:
           docker_layer_caching: false
-          version: 18.09.3
+          version: 20.10.11
       - run:
           name: Building Docker
           command: |
             source ./baseos/hooks/build
-      - run:
-          name: Update system
-          command: |
-            apk update
-            apk upgrade
       - deploy:
           name: Deploy to Docker Hub
           command: |
