@@ -19,11 +19,6 @@ jobs:
           name: Building Docker
           command: |
             source ./baseos/hooks/build
-      - run:
-          name: Update system
-          command: |
-            apk update
-            apk upgrade
       - deploy:
           name: Deploy to Docker Hub
           command: |
