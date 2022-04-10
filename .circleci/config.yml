@@ -18,11 +18,11 @@ jobs:
       - run:
           name: Building Docker
           command: |
-            source ./baseos/hooks/build
+            . ./baseos/hooks/build
       - deploy:
           name: Deploy to Docker Hub
           command: |
-            source ./baseos/hooks/deploy
+            . ./baseos/hooks/deploy
 
   build-apache:
     executor: default
