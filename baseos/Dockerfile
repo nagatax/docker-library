@@ -1,10 +1,10 @@
-FROM centos:8
+FROM rockylinux:8
 
 # IMAGE INFORMATION
 LABEL maintainer="nagatax<4foview@gmail.com>" \
     title="baseos" \
-    version="centos" \
-    description="This image is base image"
+    version="rockylinux" \
+    description="This image is base image."
 
 # COMMON SETTING
 ENV SRC_DIR="/usr/local/src" \
@@ -15,9 +15,7 @@ ENV SRC_DIR="/usr/local/src" \
 USER root
 
 RUN set -x; \
-    : "Set a GPG key" \
-    && rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-centosofficial \
-    && dnf update -y \
+    dnf update -y \
     && dnf clean all
 
 # Set a command when system will start
