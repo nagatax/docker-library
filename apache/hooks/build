@@ -5,7 +5,7 @@
 ##################################################
 
 # Load some environmental values
-source ./apache/hooks/env.sh
+. ./apache/hooks/env.sh
 
 # Building a docker image
 echo "Building a docker image"

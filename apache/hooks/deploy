@@ -19,10 +19,10 @@
 set -eu
 
 # Load some environmental values
-source ./apache/hooks/env.sh
+. ./apache/hooks/env.sh
 
 # Register in Docker Hub
-source ./apache/../lib/dockerhub.sh
+. ./apache/../lib/dockerhub.sh
 pushImage ${DOCKER_USER} ${DOCKER_PASS} ${D_IMAGE} ${PACKAGE} ${PACKAGE_VERSION} ${PACKAGE_LATEST}
 
 # Register tag in Git Hub
