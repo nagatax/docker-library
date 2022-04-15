@@ -7,23 +7,6 @@ executors:
     working_directory: ~/repo
 
 jobs:
-  build-baseos:
-    executor: default
-    working_directory: ~/baseos
-    steps:
-      - checkout
-      - setup_remote_docker:
-          docker_layer_caching: false
-          version: 20.10.11
-      - run:
-          name: Building Docker
-          command: |
-            . ./baseos/hooks/build
-      - deploy:
-          name: Deploy to Docker Hub
-          command: |
-            . ./baseos/hooks/deploy
-
   build-apache:
     executor: default
     steps:
@@ -156,11 +139,6 @@ workflows:
   version: 2
   build-and-test-and-deploy:
     jobs:
-      - build-baseos:
-          context: dockerhub
-          filters:
-            branches:
-              only: baseos/master
       - build-apache:
           context: dockerhub
           filters:

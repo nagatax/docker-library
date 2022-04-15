@@ -4,10 +4,6 @@
 
 Dockerのイメージをまとめたものです。
 
-## baseos
-
-Dockerイメージのベースとなるイメージです。
-
 ## apache
 
 Apache httpdをインストールしたイメージです。
