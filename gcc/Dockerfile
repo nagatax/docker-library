@@ -1,4 +1,4 @@
-FROM nagatax/baseos:centos8
+FROM rockylinux:8
 
 ##################################################
 # gccのインストール
@@ -24,9 +24,22 @@ ENV GCC_URL="https://ftp.jaist.ac.jp/pub/GNU/${GCC}/${GCC_PAKAGE}/${GCC_PAKAGE_F
 ENV GCC_SIG="https://ftp.jaist.ac.jp/pub/GNU/${GCC}/${GCC_PAKAGE}/${GCC_PAKAGE_FILE}.sig"
 
 # IMAGE INFORMATION
-LABEL title="${GCC}" \
+LABEL maintainer="nagatax<4foview@gmail.com>" \
+    title="${GCC}" \
     version="${GCC_VERSION}" \
     description="This is image which installed the gcc"
+
+# COMMON SETTING
+ENV SRC_DIR="/usr/local/src" \
+    INSTALL_DIR="/usr/local" \
+    BUILD_DIR="/usr/local/build"
+
+# Change executable user
+USER root
+
+RUN set -x; \
+    dnf update -y \
+    && dnf clean all
 
 RUN set -x; \
        : "システムを最新の状態に更新" \

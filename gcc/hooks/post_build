@@ -2,8 +2,8 @@
 set -eu
 
 # Load some environmental values
-source ./gcc/hooks/env.sh
+. ./gcc/hooks/env.sh
 
 # テストスイートの実行
 chmod +x ./gcc/tests/run_tests.sh
-source ./gcc/tests/run_tests.sh
+. ./gcc/tests/run_tests.sh
