@@ -10,9 +10,9 @@ FROM common AS  build
 ##################################################
 ARG REDIS
 ARG REDIS_VERSION
-ENV REDIS_PAKAGE="${REDIS}-${REDIS_VERSION}"
-ENV REDIS_PAKAGE_FILE="${REDIS_PAKAGE}.tar.gz"
-ENV REDIS_URL="http://download.redis.io/releases/${REDIS_PAKAGE_FILE}"
+ARG REDIS_PAKAGE
+ARG REDIS_PAKAGE_FILE
+ARG REDIS_URL
 
 RUN set -x; \
   . ~/.bashrc \
@@ -36,12 +36,16 @@ RUN set -x; \
   && export CC=gcc \
   && make distclean \
   && make -j`nproc` |& tee make.log \
-  #    && make check |& tee make_check.log \
   && make PREFIX="${INSTALL_DIR}/${REDIS}" install |& tee make_install.log \
   \
-  && : "設定ファイルのコピーとパスの設定" \
+  && : "設定ファイルのコピー" \
   && cp -a redis.conf "${INSTALL_DIR}/${REDIS}" \
-  && echo "export PATH=${INSTALL_DIR}/${REDIS}/bin"':${PATH}' >> ~/.bashrc \
+  && : "パスの設定" \
+  && if [ -z ${PATH} ] ; then \
+      echo "export PATH=${INSTALL_DIR}/${REDIS}/bin" >> ~/.bashrc ; \
+      else \
+      echo "export PATH=${INSTALL_DIR}/${REDIS}/bin"':${PATH}' >> ~/.bashrc ; \
+      fi \
   \
   && : "不要なファイルの削除" \
   && rm -rf "${SRC_DIR}/${REDIS_PAKAGE_FILE}"

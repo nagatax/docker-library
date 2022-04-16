@@ -12,8 +12,8 @@ control 'docker' do
     it { should be_running }
     its('id')      { should_not eq '' }
     its('image')   { should eq ENV['D_IMAGE'] }
-    its('repo')    { should eq ENV['PACKAGE'] }
-    its('tag')     { should eq ENV['PACKAGE_VERSION'] }
+    its('repo')    { should eq ENV['REDIS'] }
+    its('tag')     { should eq ENV['REDIS_VERSION'] }
     its('ports')   { should eq '6379/tcp' }
     its('command') { should eq '/usr/local/redis/bin/redis-server /data/redis.conf' }
   end
