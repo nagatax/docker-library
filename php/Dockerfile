@@ -26,9 +26,9 @@ RUN set -x; \
 # Install PHP
 ARG PHP
 ARG PHP_VERSION
-ENV PHP_PAKAGE="${PHP}-${PHP_VERSION}"
-ENV PHP_PAKAGE_FILE="${PHP}-${PHP_VERSION}.tar.gz"
-ENV PHP_URL="https://www.php.net/distributions/${PHP_PAKAGE_FILE}"
+ARG PHP_PAKAGE
+ARG PHP_PAKAGE_FILE
+ARG PHP_URL
 ARG PHP_SHA256
 
 RUN set -x; \
@@ -82,7 +82,14 @@ RUN set -x; \
         --with-zlib \
     && make -j`nproc` \
     && make install \
-    && echo 'export PATH=${PATH}'":${INSTALL_DIR}/${PHP}/bin" >> /root/.bashrc \
+    && : "パスの設定" \
+    && if [ -z ${PATH} ] ; then \
+        echo "export PATH=${INSTALL_DIR}/${PHP}/bin" >> ~/.bashrc ; \
+       else \
+        echo "export PATH=${INSTALL_DIR}/${PHP}/bin"':${PATH}' >> ~/.bashrc ; \
+       fi \
+    \
+    && : "設定ファイルのコピー" \
     && cp -a "${SRC_DIR}/${PHP_PAKAGE}/php.ini-development" "${INSTALL_DIR}/${PHP}/lib/php.ini" \
     \
     && : "不要なファイルの削除" \
@@ -172,7 +179,6 @@ RUN set -x; \
         unzip \
     && : "Xdebug" \
     && dnf install -y --enablerepo=powertools \
-        # ImageMagick-devel \
         libmemcached-devel \
         libyaml-devel \
     \

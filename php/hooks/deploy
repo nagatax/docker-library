@@ -19,11 +19,11 @@
 set -eu
 
 # Load some environmental values
-source ./php/hooks/env.sh
+. ./php/hooks/env.sh
 
 # Register in Docker Hub
-source ./php/../lib/dockerhub.sh
-pushImage ${DOCKER_USER} ${DOCKER_PASS} ${D_IMAGE} ${PACKAGE} ${PACKAGE_VERSION} ${PACKAGE_LATEST}
+. ./php/../lib/dockerhub.sh
+pushImage ${DOCKER_USER} ${DOCKER_PASS} ${D_IMAGE} ${PHP} ${PHP_VERSION} ${PHP_LATEST}
 
 # Register tag in Git Hub
 # echo "Pushing git tag"

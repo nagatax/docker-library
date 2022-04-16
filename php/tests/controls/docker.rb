@@ -12,9 +12,8 @@ control 'docker' do
     it { should be_running }
     its('id')      { should_not eq '' }
     its('image')   { should eq ENV['D_IMAGE'] }
-    its('repo')    { should eq ENV['PACKAGE'] }
-    its('tag')     { should eq ENV['PACKAGE_VERSION'] }
-    its('command') { should eq '/usr/local/httpd/bin/apachectl -D FOREGROUND' }
+    its('repo')    { should eq ENV['PHP'] }
+    its('tag')     { should eq ENV['PHP_VERSION'] }
   end
 
 end

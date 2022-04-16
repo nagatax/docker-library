@@ -5,8 +5,17 @@
 ##################################################
 
 # Load some environmental values
-source ./php/hooks/env.sh
+. ./php/hooks/env.sh
 
 # Building a docker image
 echo "Building a docker image"
-docker image build . --build-arg PHP=${PACKAGE} --build-arg PHP_VERSION=${PACKAGE_VERSION} --build-arg PHP_SHA256=${PACKAGE_SHA256} --build-arg COMPOSER_SHA=${COMPOSER_SHA} -t ${D_IMAGE} -f ./php/Dockerfile
+docker image build . \
+--build-arg PHP=${PHP} \
+--build-arg PHP_VERSION=${PHP_VERSION} \
+--build-arg PHP_PAKAGE=${PHP_PAKAGE} \
+--build-arg PHP_PAKAGE_FILE=${PHP_PAKAGE_FILE} \
+--build-arg PHP_URL=${PHP_URL} \
+--build-arg PHP_SHA256=${PHP_SHA256} \
+--build-arg COMPOSER_SHA=${COMPOSER_SHA} \
+-t ${D_IMAGE} \
+-f ./php/Dockerfile
