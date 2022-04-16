@@ -184,7 +184,7 @@ RUN set -x; \
         --prefix="${INSTALL_DIR}/${APACHE}" \
         --with-apr="${INSTALL_DIR}/${APR}" \
         --with-apr-util="${INSTALL_DIR}/${APR_UTIL}" \
-        --with-pcre="${INSTALL_DIR}/${PCRE}/bin/pcre-config" \
+        --with-pcre="${INSTALL_DIR}/${PCRE}" \
         --with-ssl="${INSTALL_DIR}/${OPENSSL}" \
     && make -j`nproc` \
     && make install \
