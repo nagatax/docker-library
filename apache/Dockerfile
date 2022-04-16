@@ -125,8 +125,6 @@ RUN set -x; \
     && : "pcreのインストール" \
     && cd "${SRC_DIR}" \
     && wget --content-disposition "${PCRE_URL}" \
-#    && wget --content-disposition "${PCRE_SIG_URL}" \
-#    && gpg --verify "${PCRE_PAKAGE_FILE}.sig" \
     && tar xvf "${PCRE_PAKAGE_FILE}" \
     && cd "${BUILD_DIR}/${PCRE_PAKAGE}" \
     && "${SRC_DIR}/${PCRE_PAKAGE}/configure" \
@@ -151,49 +149,6 @@ RUN set -x; \
     && rm -rf "${SRC_DIR}/${PCRE_PAKAGE}" \
         "${SRC_DIR}/${PCRE_PAKAGE_FILE}" \
         "${BUILD_DIR}/${PCRE_PAKAGE}"
-
-# Install openssl
-# ENV OPENSSL="openssl"
-# ENV OPENSSL_VERSION="1.1.1g"
-# ENV OPENSSL_PAKAGE="${OPENSSL}-${OPENSSL_VERSION}"
-# ENV OPENSSL_PAKAGE_FILE="${OPENSSL_PAKAGE}.tar.gz"
-# ENV OPENSSL_URL="https://www.openssl.org/source/${OPENSSL_PAKAGE_FILE}"
-# ENV OPENSSL_SHA256="ddb04774f1e32f0c49751e21b67216ac87852ceb056b75209af2443400636d46 *${OPENSSL_PAKAGE_FILE}"
-
-# RUN set -x; \
-#       . ~/.bashrc \
-#        : "関連パッケージのインストール" \
-#     && dnf install -y \
-#         lksctp-tools \
-#         lksctp-tools-devel \
-#         make \
-#         perl \
-#         zlib-devel \
-#         wget \
-#     && : "必要なフォルダの作成" \
-#     && mkdir -p "${BUILD_DIR}/${OPENSSL_PAKAGE}" \
-#     && mkdir -p "${INSTALL_DIR}/${OPENSSL}" \
-#     && : "opensslのインストール" \
-#     && cd "${SRC_DIR}" \
-#     && wget "${OPENSSL_URL}" \
-#     && echo "${OPENSSL_SHA256}" | sha256sum -c - \
-#     && tar xvf "${OPENSSL_PAKAGE_FILE}" \
-#     && cd "${BUILD_DIR}/${OPENSSL_PAKAGE}" \
-#     && "${SRC_DIR}/${OPENSSL_PAKAGE}/config" \
-#         --prefix="${INSTALL_DIR}/${OPENSSL}" \
-#         enable-md2 \
-#         sctp \
-#         shared \
-#         zlib \
-#     && make -j`nproc` \
-#     && make install \
-#     && echo 'export PATH=${PATH}'":${INSTALL_DIR}/${OPENSSL}/bin" >> /root/.bashrc \
-#     && echo "${INSTALL_DIR}/${OPENSSL}/lib" > /etc/ld.so.conf.d/lib64.conf \
-#     && ldconfig \
-#     && : "不要なファイルの削除" \
-#     && rm -rf "${SRC_DIR}/${OPENSSL_PAKAGE}" \
-#         "${SRC_DIR}/${OPENSSL_PAKAGE_FILE}" \
-#         "${BUILD_DIR}/${OPENSSL_PAKAGE}"
 
 # Install Apache
 ARG APACHE
