@@ -39,9 +39,14 @@ RUN set -x; \
   #    && make check |& tee make_check.log \
   && make PREFIX="${INSTALL_DIR}/${REDIS}" install |& tee make_install.log \
   \
-  && : "設定ファイルのコピーとパスの設定" \
+  && : "設定ファイルのコピー" \
   && cp -a redis.conf "${INSTALL_DIR}/${REDIS}" \
-  && echo "export PATH=${INSTALL_DIR}/${REDIS}/bin"':${PATH}' >> ~/.bashrc \
+  && : "パスの設定" \
+  && if [ -z ${PATH} ] ; then \
+      echo "export PATH=${INSTALL_DIR}/${REDIS}/bin" >> ~/.bashrc ; \
+      else \
+      echo "export PATH=${INSTALL_DIR}/${REDIS}/bin"':${PATH}' >> ~/.bashrc ; \
+      fi \
   \
   && : "不要なファイルの削除" \
   && rm -rf "${SRC_DIR}/${REDIS_PAKAGE_FILE}"
