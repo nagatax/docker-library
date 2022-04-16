@@ -19,8 +19,20 @@ set -eu
 export DOCKER_BUILDKIT=1
 
 # Installing version
-export PACKAGE=nginx
-export PACKAGE_VERSION=1.21.5
-export PACKAGE_LATEST=1.21.5
-# export PACKAGE_SHA256="2624e92d89b20483caeffe514a7c7ba93ab13b650295ae330f01c35d5b50d87f"
-export D_IMAGE=${PACKAGE}:${PACKAGE_VERSION}
+## pcre
+export PCRE="pcre"
+export PCRE_VERSION="8.45"
+export PCRE_PAKAGE="${PCRE}-${PCRE_VERSION}"
+export PCRE_PAKAGE_FILE="${PCRE_PAKAGE}.tar.gz"
+export PCRE_URL="https://sourceforge.net/projects/pcre/files/${PCRE}/${PCRE_VERSION}/${PCRE_PAKAGE_FILE}/download"
+export PCRE_SIG_URL="https://sourceforge.net/projects/pcre/files/${PCRE}/${PCRE_VERSION}/${PCRE_PAKAGE_FILE}.sig/download"
+## nginx
+export NGINX="nginx"
+export NGINX_VERSION="1.21.6"
+export NGINX_PAKAGE="${NGINX}-${NGINX_VERSION}"
+export NGINX_PAKAGE_FILE="${NGINX_PAKAGE}.tar.gz"
+export NGINX_URL="https://nginx.org/download/${NGINX_PAKAGE_FILE}"
+
+# BUILD Setting
+export NGINX_LATEST=1.21.5
+export D_IMAGE=${NGINX}:${NGINX_VERSION}
