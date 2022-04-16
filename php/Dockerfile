@@ -179,7 +179,6 @@ RUN set -x; \
         unzip \
     && : "Xdebug" \
     && dnf install -y --enablerepo=powertools \
-        # ImageMagick-devel \
         libmemcached-devel \
         libyaml-devel \
     \
