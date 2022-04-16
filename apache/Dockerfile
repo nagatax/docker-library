@@ -9,12 +9,12 @@ FROM common AS  build
 # Install the Apache
 ##################################################
 # Install apr
-ENV APR="apr"
-ENV APR_VERSION="1.6.5"
-ENV APR_PAKAGE="${APR}-${APR_VERSION}"
-ENV APR_PAKAGE_FILE="${APR_PAKAGE}.tar.gz"
-ENV APR_URL="http://ftp.jaist.ac.jp/pub/apache/${APR}/${APR_PAKAGE_FILE}"
-ENV APR_SHA256="70dcf9102066a2ff2ffc47e93c289c8e54c95d8dda23b503f9e61bb0cbd2d105 *${APR_PAKAGE_FILE}"
+ARG APR
+ARG APR_VERSION
+ARG APR_PAKAGE
+ARG APR_PAKAGE_FILE
+ARG APR_URL
+ARG APR_SHA256
 
 RUN set -x; \
       . ~/.bashrc \
@@ -29,7 +29,7 @@ RUN set -x; \
     && : "aprのインストール" \
     && cd "${SRC_DIR}" \
     && wget "${APR_URL}" \
-    && echo "${APR_SHA256}" | sha256sum -c - \
+    && echo "${APR_SHA256} *${APR_PAKAGE_FILE}" | sha256sum -c - \
     && tar xvf "${APR_PAKAGE_FILE}" \
     && cd "${APR_PAKAGE}" \
     && sed -ie 's/$RM "$cfgfile"/$RM -f "$cfgfile"/g' ./configure \
@@ -44,12 +44,12 @@ RUN set -x; \
         "${BUILD_DIR}/${APR_PAKAGE}"
 
 # Install apr-util
-ENV APR_UTIL="apr-util"
-ENV APR_UTIL_VERSION="1.6.1"
-ENV APR_UTIL_PAKAGE="${APR_UTIL}-${APR_UTIL_VERSION}"
-ENV APR_UTIL_PAKAGE_FILE="${APR_UTIL_PAKAGE}.tar.gz"
-ENV APR_UTIL_URL="http://ftp.jaist.ac.jp/pub/apache//${APR}/${APR_UTIL_PAKAGE_FILE}"
-ENV APR_UTIL_SHA256="b65e40713da57d004123b6319828be7f1273fbc6490e145874ee1177e112c459 *${APR_UTIL_PAKAGE_FILE}"
+ARG APR_UTIL
+ARG APR_UTIL_VERSION
+ARG APR_UTIL_PAKAGE
+ARG APR_UTIL_PAKAGE_FILE
+ARG APR_UTIL_URL
+ARG APR_UTIL_SHA256
 
 RUN set -x; \
       . ~/.bashrc \
@@ -64,7 +64,7 @@ RUN set -x; \
     && : "apr-utilのインストール" \
     && cd "${SRC_DIR}" \
     && wget "${APR_UTIL_URL}" \
-    && echo "${APR_UTIL_SHA256}" | sha256sum -c - \
+    && echo "${APR_UTIL_SHA256} *${APR_UTIL_PAKAGE_FILE}" | sha256sum -c - \
     && tar xvf "${APR_UTIL_PAKAGE_FILE}" \
     && cd "${BUILD_DIR}/${APR_UTIL_PAKAGE}" \
     && "${SRC_DIR}/${APR_UTIL_PAKAGE}/configure" \
@@ -78,12 +78,12 @@ RUN set -x; \
         "${BUILD_DIR}/${APR_UTIL_PAKAGE}"
 
 # Install pcre
-ENV PCRE="pcre"
-ENV PCRE_VERSION="8.45"
-ENV PCRE_PAKAGE="${PCRE}-${PCRE_VERSION}"
-ENV PCRE_PAKAGE_FILE="${PCRE_PAKAGE}.tar.gz"
-ENV PCRE_URL="https://sourceforge.net/projects/pcre/files/${PCRE}/${PCRE_VERSION}/${PCRE_PAKAGE_FILE}/download"
-ENV PCRE_SIG_URL="https://sourceforge.net/projects/pcre/files/${PCRE}/${PCRE_VERSION}/${PCRE_PAKAGE_FILE}.sig/download"
+ARG PCRE
+ARG PCRE_VERSION
+ARG PCRE_PAKAGE
+ARG PCRE_PAKAGE_FILE
+ARG PCRE_URL
+ARG PCRE_SIG_URL
 
 RUN set -x; \
       . ~/.bashrc \
@@ -156,9 +156,9 @@ RUN set -x; \
 # Install Apache
 ARG APACHE
 ARG APACHE_VERSION
-ENV APACHE_PAKAGE="${APACHE}-${APACHE_VERSION}"
-ENV APACHE_PAKAGE_FILE="${APACHE_PAKAGE}.tar.gz"
-ENV APACHE_URL="http://ftp.jaist.ac.jp/pub/apache/${APACHE}/${APACHE_PAKAGE_FILE}"
+ARG APACHE_PAKAGE
+ARG APACHE_PAKAGE_FILE
+ARG APACHE_URL
 ARG APACHE_SHA256
 
 RUN set -x; \
