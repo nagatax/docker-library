@@ -38,6 +38,20 @@ RUN set -x; \
         --prefix="${INSTALL_DIR}/${APR}" \
     && make -j`nproc` \
     && make install \
+    && : "パスの設定" \
+    && if [ -z ${PATH} ] ; then \
+        echo "export PATH=${INSTALL_DIR}/${APR}/bin" >> ~/.bashrc ; \
+       else \
+        echo "export PATH=${INSTALL_DIR}/${APR}/bin"':${PATH}' >> ~/.bashrc ; \
+       fi \
+    \
+    && : "共有ライブラリの設定" \
+    && if [ -z ${LD_LIBRARY_PATH} ] ; then \
+        echo "export LD_LIBRARY_PATH=${INSTALL_DIR}/${APR}/lib" >> ~/.bashrc ; \
+       else \
+        echo "export LD_LIBRARY_PATH=${INSTALL_DIR}/${APR}/lib"':${LD_LIBRARY_PATH}' >> ~/.bashrc ; \
+       fi \
+    \
     && : "不要なファイルの削除" \
     && rm -rf "${SRC_DIR}/${APR_PAKAGE}" \
         "${SRC_DIR}/${APR_PAKAGE_FILE}" \
@@ -72,6 +86,20 @@ RUN set -x; \
         --with-apr="${INSTALL_DIR}/${APR}" \
     && make -j`nproc` \
     && make install \
+    && : "パスの設定" \
+    && if [ -z ${PATH} ] ; then \
+        echo "export PATH=${INSTALL_DIR}/${APR_UTIL}/bin" >> ~/.bashrc ; \
+       else \
+        echo "export PATH=${INSTALL_DIR}/${APR_UTIL}/bin"':${PATH}' >> ~/.bashrc ; \
+       fi \
+    \
+    && : "共有ライブラリの設定" \
+    && if [ -z ${LD_LIBRARY_PATH} ] ; then \
+        echo "export LD_LIBRARY_PATH=${INSTALL_DIR}/${APR_UTIL}/lib" >> ~/.bashrc ; \
+       else \
+        echo "export LD_LIBRARY_PATH=${INSTALL_DIR}/${APR_UTIL}/lib"':${LD_LIBRARY_PATH}' >> ~/.bashrc ; \
+       fi \
+    \
     && : "不要なファイルの削除" \
     && rm -rf "${SRC_DIR}/${APR_UTIL_PAKAGE}" \
         "${SRC_DIR}/${APR_UTIL_PAKAGE_FILE}" \
@@ -105,6 +133,20 @@ RUN set -x; \
         --prefix="${INSTALL_DIR}/${PCRE}" \
     && make -j`nproc` \
     && make install \
+    && : "パスの設定" \
+    && if [ -z ${PATH} ] ; then \
+        echo "export PATH=${INSTALL_DIR}/${PCRE}/bin" >> ~/.bashrc ; \
+       else \
+        echo "export PATH=${INSTALL_DIR}/${PCRE}/bin"':${PATH}' >> ~/.bashrc ; \
+       fi \
+    \
+    && : "共有ライブラリの設定" \
+    && if [ -z ${LD_LIBRARY_PATH} ] ; then \
+        echo "export LD_LIBRARY_PATH=${INSTALL_DIR}/${PCRE}/lib" >> ~/.bashrc ; \
+       else \
+        echo "export LD_LIBRARY_PATH=${INSTALL_DIR}/${PCRE}/lib"':${LD_LIBRARY_PATH}' >> ~/.bashrc ; \
+       fi \
+    \
     && : "不要なファイルの削除" \
     && rm -rf "${SRC_DIR}/${PCRE_PAKAGE}" \
         "${SRC_DIR}/${PCRE_PAKAGE_FILE}" \
@@ -191,7 +233,13 @@ RUN set -x; \
         --with-ssl="${INSTALL_DIR}/${OPENSSL}" \
     && make -j`nproc` \
     && make install \
-    && echo 'export PATH=${PATH}'":${INSTALL_DIR}/${APACHE}/bin" >> /root/.bashrc \
+    && : "パスの設定" \
+    && if [ -z ${PATH} ] ; then \
+        echo "export PATH=${INSTALL_DIR}/${APACHE}/bin" >> ~/.bashrc ; \
+       else \
+        echo "export PATH=${INSTALL_DIR}/${APACHE}/bin"':${PATH}' >> ~/.bashrc ; \
+       fi \
+    \
     && useradd -s /sbin/nologin apache \
     && chown -R apache:apache "${INSTALL_DIR}/${APACHE}/" \
     && : "不要なファイルの削除" \
