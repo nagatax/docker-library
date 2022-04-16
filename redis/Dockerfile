@@ -10,9 +10,9 @@ FROM common AS  build
 ##################################################
 ARG REDIS
 ARG REDIS_VERSION
-ENV REDIS_PAKAGE="${REDIS}-${REDIS_VERSION}"
-ENV REDIS_PAKAGE_FILE="${REDIS_PAKAGE}.tar.gz"
-ENV REDIS_URL="http://download.redis.io/releases/${REDIS_PAKAGE_FILE}"
+ARG REDIS_PAKAGE
+ARG REDIS_PAKAGE_FILE
+ARG REDIS_URL
 
 RUN set -x; \
   . ~/.bashrc \

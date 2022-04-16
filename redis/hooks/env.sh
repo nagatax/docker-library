@@ -19,8 +19,12 @@ set -eu
 export DOCKER_BUILDKIT=1
 
 # Installing version
-export PACKAGE=redis
-export PACKAGE_VERSION=6.2.6
-export PACKAGE_LATEST=6.2.6
-# export PACKAGE_SHA256="2624e92d89b20483caeffe514a7c7ba93ab13b650295ae330f01c35d5b50d87f"
-export D_IMAGE=${PACKAGE}:${PACKAGE_VERSION}
+export REDIS="redis"
+export REDIS_VERSION="6.2.6"
+export REDIS_PAKAGE="${REDIS}-${REDIS_VERSION}"
+export REDIS_PAKAGE_FILE="${REDIS_PAKAGE}.tar.gz"
+export REDIS_URL="http://download.redis.io/releases/${REDIS_PAKAGE_FILE}"
+
+# BUILD Setting
+export REDIS_LATEST="6.2.6"
+export D_IMAGE=${REDIS}:${REDIS_VERSION}

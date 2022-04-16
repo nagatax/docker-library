@@ -9,4 +9,11 @@ source ./redis/hooks/env.sh
 
 # Building a docker image
 echo "Building a docker image"
-docker image build . --build-arg REDIS=${PACKAGE} --build-arg REDIS_VERSION=${PACKAGE_VERSION} -t ${D_IMAGE} -f ./redis/Dockerfile
+docker image build . \
+--build-arg REDIS=${REDIS} \
+--build-arg REDIS_VERSION=${REDIS_VERSION} \
+--build-arg REDIS_PAKAGE=${REDIS_PAKAGE} \
+--build-arg REDIS_PAKAGE_FILE=${REDIS_PAKAGE_FILE} \
+--build-arg REDIS_URL=${REDIS_URL} \
+-t ${D_IMAGE} \
+-f ./redis/Dockerfile
