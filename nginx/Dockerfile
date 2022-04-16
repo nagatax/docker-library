@@ -32,6 +32,20 @@ RUN set -x; \
         --prefix="${INSTALL_DIR}/${PCRE}" \
     && make -j`nproc` \
     && make install \
+    && : "パスの設定" \
+    && if [ -z ${PATH} ] ; then \
+        echo "export PATH=${INSTALL_DIR}/${PCRE}/bin" >> ~/.bashrc ; \
+       else \
+        echo "export PATH=${INSTALL_DIR}/${PCRE}/bin"':${PATH}' >> ~/.bashrc ; \
+       fi \
+    \
+    && : "共有ライブラリの設定" \
+    && if [ -z ${LD_LIBRARY_PATH} ] ; then \
+        echo "export LD_LIBRARY_PATH=${INSTALL_DIR}/${PCRE}/lib" >> ~/.bashrc ; \
+       else \
+        echo "export LD_LIBRARY_PATH=${INSTALL_DIR}/${PCRE}/lib"':${LD_LIBRARY_PATH}' >> ~/.bashrc ; \
+       fi \
+    \
     && : "不要なファイルの削除" \
     && rm -rf "${SRC_DIR}/${PCRE_PAKAGE_FILE}" \
         "${BUILD_DIR}/${PCRE_PAKAGE}"
@@ -70,8 +84,12 @@ RUN set -x; \
 #    && make check |& tee make_check.log \
     && make install |& tee make_install.log \
     \
-    && : "設定ファイルのコピーとパスの設定" \
-    && echo "export PATH=${INSTALL_DIR}/${NGINX}/sbin"':${PATH}' >> ~/.bashrc \
+    && : "パスの設定" \
+    && if [ -z ${PATH} ] ; then \
+        echo "export PATH=${INSTALL_DIR}/${NGINX}/sbin" >> ~/.bashrc ; \
+       else \
+        echo "export PATH=${INSTALL_DIR}/${NGINX}/sbin"':${PATH}' >> ~/.bashrc ; \
+       fi \
     \
     && : "不要なファイルの削除" \
     && rm -rf "${SRC_DIR}/${NGINX_PAKAGE_FILE}"
