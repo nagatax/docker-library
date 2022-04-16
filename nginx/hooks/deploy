@@ -19,10 +19,10 @@
 set -eu
 
 # Load some environmental values
-source ./nginx/hooks/env.sh
+. ./nginx/hooks/env.sh
 
 # Register in Docker Hub
-source ./nginx/../lib/dockerhub.sh
+. ./nginx/../lib/dockerhub.sh
 pushImage ${DOCKER_USER} ${DOCKER_PASS} ${D_IMAGE} ${NGINX} ${NGINX_VERSION} ${NGINX_LATEST}
 
 # Register tag in Git Hub
