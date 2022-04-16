@@ -19,9 +19,15 @@ set -eu
 export DOCKER_BUILDKIT=1
 
 # Installing version
-export PACKAGE=php
-export PACKAGE_VERSION=8.1.1
-export PACKAGE_LATEST=8.1.1
-export PACKAGE_SHA256="4e4cf3f843a5111f6c55cd21de8f26834ea3cd4a5be77c88357cbcec4a2d671d"
-export D_IMAGE=${PACKAGE}:${PACKAGE_VERSION}
+## php
+export PHP="php"
+export PHP_VERSION="8.1.5"
+export PHP_PAKAGE="${PHP}-${PHP_VERSION}"
+export PHP_PAKAGE_FILE="${PHP}-${PHP_VERSION}.tar.gz"
+export PHP_URL="https://www.php.net/distributions/${PHP_PAKAGE_FILE}"
+export PHP_SHA256="44d637627746082395d5d3d3d6ae7d71e780b82a8d55a0228887158c4316bf11"
 export COMPOSER_SHA="906a84df04cea2aa72f40b5f787e49f22d4c2f19492ac310e8cba5b96ac8b64115ac402c8cd292b8a03482574915d1a8"
+
+# BUILD Setting
+export PHP_LATEST="8.1.5"
+export D_IMAGE=${PHP}:${PHP_VERSION}
