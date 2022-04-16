@@ -5,7 +5,7 @@
 ##################################################
 
 # Load some environmental values
-source ./php/hooks/env.sh
+. ./php/hooks/env.sh
 
 # Building a docker image
 echo "Building a docker image"
