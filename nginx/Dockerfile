@@ -6,12 +6,12 @@ FROM nagatax/gcc:latest AS common
 FROM common AS  build
 
 # Install pcre
-ENV PCRE="pcre"
-ENV PCRE_VERSION="8.42"
-ENV PCRE_PAKAGE="${PCRE}-${PCRE_VERSION}"
-ENV PCRE_PAKAGE_FILE="${PCRE_PAKAGE}.tar.gz"
-ENV PCRE_URL="https://sourceforge.net/projects/pcre/files/${PCRE}/${PCRE_VERSION}/${PCRE_PAKAGE_FILE}/download"
-ENV PCRE_SIG_URL="https://sourceforge.net/projects/pcre/files/${PCRE}/${PCRE_VERSION}/${PCRE_PAKAGE_FILE}.sig/download"
+ARG PCRE
+ARG PCRE_VERSION
+ARG PCRE_PAKAGE
+ARG PCRE_PAKAGE_FILE
+ARG PCRE_URL
+ARG PCRE_SIG_URL
 
 RUN set -x; \
       . ~/.bashrc \
@@ -41,9 +41,9 @@ RUN set -x; \
 ##################################################
 ARG NGINX
 ARG NGINX_VERSION
-ENV NGINX_PAKAGE="${NGINX}-${NGINX_VERSION}"
-ENV NGINX_PAKAGE_FILE="${NGINX_PAKAGE}.tar.gz"
-ENV NGINX_URL="https://nginx.org/download/${NGINX_PAKAGE_FILE}"
+ARG NGINX_PAKAGE
+ARG NGINX_PAKAGE_FILE
+ARG NGINX_URL
 
 RUN set -x; \
     . ~/.bashrc \

@@ -12,8 +12,8 @@ control 'docker' do
     it { should be_running }
     its('id')      { should_not eq '' }
     its('image')   { should eq ENV['D_IMAGE'] }
-    its('repo')    { should eq ENV['PACKAGE'] }
-    its('tag')     { should eq ENV['PACKAGE_VERSION'] }
+    its('repo')    { should eq ENV['NGINX'] }
+    its('tag')     { should eq ENV['NGINX_VERSION'] }
     its('ports')   { should eq '80/tcp' }
     its('command') { should eq '/usr/local/nginx/sbin/nginx -g \'daemon off;\'' }
   end
