@@ -19,10 +19,10 @@
 set -eu
 
 # Load some environmental values
-source ./redis/hooks/env.sh
+. ./redis/hooks/env.sh
 
 # Register in Docker Hub
-source ./redis/../lib/dockerhub.sh
+. ./redis/../lib/dockerhub.sh
 pushImage ${DOCKER_USER} ${DOCKER_PASS} ${D_IMAGE} ${REDIS} ${REDIS_VERSION} ${REDIS_LATEST}
 
 # Register tag in Git Hub
