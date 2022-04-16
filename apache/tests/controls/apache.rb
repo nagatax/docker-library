@@ -20,6 +20,6 @@ control 'apache' do
 
   # バージョンの確認
   describe command('. ~/.bashrc && httpd -v') do
-    its(:stdout) { should match /#{ENV['PACKAGE_VERSION']}/ }
+    its(:stdout) { should match /#{ENV['APACHE_VERSION']}/ }
   end
 end
