@@ -36,7 +36,6 @@ RUN set -x; \
   && export CC=gcc \
   && make distclean \
   && make -j`nproc` |& tee make.log \
-  #    && make check |& tee make_check.log \
   && make PREFIX="${INSTALL_DIR}/${REDIS}" install |& tee make_install.log \
   \
   && : "設定ファイルのコピー" \
