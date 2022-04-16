@@ -34,5 +34,5 @@ export NGINX_PAKAGE_FILE="${NGINX_PAKAGE}.tar.gz"
 export NGINX_URL="https://nginx.org/download/${NGINX_PAKAGE_FILE}"
 
 # BUILD Setting
-export NGINX_LATEST=1.21.5
+export NGINX_LATEST="1.21.6"
 export D_IMAGE=${NGINX}:${NGINX_VERSION}
