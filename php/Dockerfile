@@ -82,7 +82,14 @@ RUN set -x; \
         --with-zlib \
     && make -j`nproc` \
     && make install \
-    && echo 'export PATH=${PATH}'":${INSTALL_DIR}/${PHP}/bin" >> /root/.bashrc \
+    && : "パスの設定" \
+    && if [ -z ${PATH} ] ; then \
+        echo "export PATH=${INSTALL_DIR}/${PHP}/bin" >> ~/.bashrc ; \
+       else \
+        echo "export PATH=${INSTALL_DIR}/${PHP}/bin"':${PATH}' >> ~/.bashrc ; \
+       fi \
+    \
+    && : "設定ファイルのコピー" \
     && cp -a "${SRC_DIR}/${PHP_PAKAGE}/php.ini-development" "${INSTALL_DIR}/${PHP}/lib/php.ini" \
     \
     && : "不要なファイルの削除" \
