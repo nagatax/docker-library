@@ -24,8 +24,6 @@ RUN set -x; \
     && : "pcreのインストール" \
     && cd "${SRC_DIR}" \
     && wget --content-disposition "${PCRE_URL}" \
-#    && wget --content-disposition "${PCRE_SIG_URL}" \
-#    && gpg --verify "${PCRE_PAKAGE_FILE}.sig" \
     && tar xvf "${PCRE_PAKAGE_FILE}" \
     && cd "${PCRE_PAKAGE}" \
     && "./configure" \
@@ -68,7 +66,6 @@ RUN set -x; \
         wget \
     \
     && : "必要なフォルダの作成" \
-#    && mkdir -p "${BUILD_DIR}/${NGINX_PAKAGE}" \
     && mkdir -p "${INSTALL_DIR}/${NGINX}" \
     \
     && : "nginxのインストール" \
@@ -81,7 +78,6 @@ RUN set -x; \
         --prefix="${INSTALL_DIR}/${NGINX}" \
         --with-pcre="${SRC_DIR}/${PCRE_PAKAGE}" \
     && make -j`nproc` |& tee make.log \
-#    && make check |& tee make_check.log \
     && make install |& tee make_install.log \
     \
     && : "パスの設定" \
