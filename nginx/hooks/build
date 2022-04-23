@@ -11,13 +11,10 @@
 echo "Building a docker image"
 docker image build . \
 --build-arg PCRE=${PCRE} \
---build-arg PCRE_VERSION=${PCRE_VERSION} \
 --build-arg PCRE_PAKAGE=${PCRE_PAKAGE} \
 --build-arg PCRE_PAKAGE_FILE=${PCRE_PAKAGE_FILE} \
 --build-arg PCRE_URL=${PCRE_URL} \
---build-arg PCRE_SIG_URL=${PCRE_SIG_URL} \
 --build-arg NGINX=${NGINX} \
---build-arg NGINX_VERSION=${NGINX_VERSION} \
 --build-arg NGINX_PAKAGE=${NGINX_PAKAGE} \
 --build-arg NGINX_PAKAGE_FILE=${NGINX_PAKAGE_FILE} \
 --build-arg NGINX_URL=${NGINX_URL} \
