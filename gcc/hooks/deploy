@@ -23,7 +23,7 @@ source ./gcc/hooks/env.sh
 
 # Register in Docker Hub
 source ./gcc/../lib/dockerhub.sh
-pushImage ${DOCKER_USER} ${DOCKER_PASS} ${D_IMAGE} ${PACKAGE} ${PACKAGE_VERSION} ${PACKAGE_LATEST}
+pushImage ${DOCKER_USER} ${DOCKER_PASS} ${D_IMAGE} ${GCC} ${GCC_VERSION} ${GCC_LATEST}
 
 # Register tag in Git Hub
 # echo "Pushing git tag"

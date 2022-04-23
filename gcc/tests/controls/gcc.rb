@@ -23,6 +23,6 @@ control 'gcc' do
 
   # バージョンの確認
   describe command('. ~/.bashrc && gcc -v') do
-    its(:stderr) { should match /#{ENV['PACKAGE_VERSION']}/ }
+    its(:stderr) { should match /#{ENV['GCC_VERSION']}/ }
   end
 end
