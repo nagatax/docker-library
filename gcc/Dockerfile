@@ -18,10 +18,9 @@ FROM rockylinux:8
 ##################################################
 ARG GCC
 ARG GCC_VERSION
-ENV GCC_PAKAGE="${GCC}-${GCC_VERSION}"
-ENV GCC_PAKAGE_FILE="${GCC_PAKAGE}.tar.gz"
-ENV GCC_URL="https://ftp.jaist.ac.jp/pub/GNU/${GCC}/${GCC_PAKAGE}/${GCC_PAKAGE_FILE}"
-ENV GCC_SIG="https://ftp.jaist.ac.jp/pub/GNU/${GCC}/${GCC_PAKAGE}/${GCC_PAKAGE_FILE}.sig"
+ARG GCC_PAKAGE
+ARG GCC_PAKAGE_FILE
+ARG GCC_URL
 
 # IMAGE INFORMATION
 LABEL maintainer="nagatax<4foview@gmail.com>" \

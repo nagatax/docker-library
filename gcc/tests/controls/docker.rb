@@ -12,8 +12,8 @@ control 'docker' do
     it { should be_running }
     its('id')      { should_not eq '' }
     its('image')   { should eq ENV['D_IMAGE'] }
-    its('repo')    { should eq ENV['PACKAGE'] }
-    its('tag')     { should eq ENV['PACKAGE_VERSION'] }
+    its('repo')    { should eq ENV['GCC'] }
+    its('tag')     { should eq ENV['GCC_VERSION'] }
     #its('ports')   { should eq [] }
     its('command') { should eq '/bin/bash' }
   end

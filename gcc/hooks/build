@@ -9,4 +9,11 @@
 
 # Building a docker image
 echo "Building a docker image"
-docker image build . --build-arg GCC=${PACKAGE} --build-arg GCC_VERSION=${PACKAGE_VERSION} -t ${D_IMAGE} -f ./gcc/Dockerfile
+docker image build . \
+--build-arg GCC=${GCC} \
+--build-arg GCC_VERSION=${GCC_VERSION} \
+--build-arg GCC_PAKAGE=${GCC_PAKAGE} \
+--build-arg GCC_PAKAGE_FILE=${GCC_PAKAGE_FILE} \
+--build-arg GCC_URL=${GCC_URL} \
+-t ${D_IMAGE} \
+-f ./gcc/Dockerfile
