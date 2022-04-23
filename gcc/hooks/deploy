@@ -4,12 +4,8 @@
 # Dockerイメージを登録する
 #
 # Environment Variables
-#  PACKAGE: package name
-#  PACKAGE_VERSION: package version
-#  PACKAGE_LATEST: latest version of package
-#  D_IMAGE: image name of Docker
-#  DH_IMAGE: image name of Docker Hub
-#  DH_LATEST: latest image name of Docker Hub
+#  DOCKER_USER: DockerHubのユーザー名
+#  DOCKER_PASS: DockerHubのパスワード
 #
 # Precondition
 #  Need to set DOCKER_USER and DOCKER_PASS.
@@ -24,10 +20,3 @@ source ./gcc/hooks/env.sh
 # Register in Docker Hub
 source ./gcc/../lib/dockerhub.sh
 pushImage ${DOCKER_USER} ${DOCKER_PASS} ${D_IMAGE} ${GCC} ${GCC_VERSION} ${GCC_LATEST}
-
-# Register tag in Git Hub
-# echo "Pushing git tag"
-# git tag -d "${PACKAGE}-v${PACKAGE_VERSION}"
-# git push origin :"${PACKAGE}-v${PACKAGE_VERSION}"
-# git tag -a "${PACKAGE}-v${PACKAGE_VERSION}" -m "${PACKAGE} version ${PACKAGE_VERSION}"
-# git push origin "${PACKAGE}-v${PACKAGE_VERSION}"

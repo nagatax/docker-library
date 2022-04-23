@@ -2,14 +2,6 @@
 
 ##################################################
 # 環境変数を定義する
-#
-# Environment Variables
-#  PACKAGE: package name
-#  PACKAGE_VERSION: package version
-#  PACKAGE_LATEST: latest version of package
-#  D_IMAGE: image name of Docker
-#  DH_IMAGE: image name of Docker Hub
-#  DH_LATEST: latest image name of Docker Hub
 ##################################################
 
 # Set shell option
