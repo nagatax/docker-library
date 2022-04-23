@@ -11,25 +11,20 @@
 echo "Building a docker image"
 docker image build . \
 --build-arg APR=${APR} \
---build-arg APR_VERSION=${APR_VERSION} \
 --build-arg APR_PAKAGE=${APR_PAKAGE} \
 --build-arg APR_PAKAGE_FILE=${APR_PAKAGE_FILE} \
 --build-arg APR_URL=${APR_URL} \
 --build-arg APR_SHA256=${APR_SHA256} \
 --build-arg APR_UTIL=${APR_UTIL} \
---build-arg APR_UTIL_VERSION=${APR_UTIL_VERSION} \
 --build-arg APR_UTIL_PAKAGE=${APR_UTIL_PAKAGE} \
 --build-arg APR_UTIL_PAKAGE_FILE=${APR_UTIL_PAKAGE_FILE} \
 --build-arg APR_UTIL_URL=${APR_UTIL_URL} \
 --build-arg APR_UTIL_SHA256=${APR_UTIL_SHA256} \
 --build-arg PCRE=${PCRE} \
---build-arg PCRE_VERSION=${PCRE_VERSION} \
 --build-arg PCRE_PAKAGE=${PCRE_PAKAGE} \
 --build-arg PCRE_PAKAGE_FILE=${PCRE_PAKAGE_FILE} \
 --build-arg PCRE_URL=${PCRE_URL} \
---build-arg PCRE_SIG_URL=${PCRE_SIG_URL} \
 --build-arg APACHE=${APACHE} \
---build-arg APACHE_VERSION=${APACHE_VERSION} \
 --build-arg APACHE_PAKAGE=${APACHE_PAKAGE} \
 --build-arg APACHE_PAKAGE_FILE=${APACHE_PAKAGE_FILE} \
 --build-arg APACHE_URL=${APACHE_URL} \

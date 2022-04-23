@@ -10,7 +10,6 @@ FROM common AS  build
 ##################################################
 # Install apr
 ARG APR
-ARG APR_VERSION
 ARG APR_PAKAGE
 ARG APR_PAKAGE_FILE
 ARG APR_URL
@@ -59,7 +58,6 @@ RUN set -x; \
 
 # Install apr-util
 ARG APR_UTIL
-ARG APR_UTIL_VERSION
 ARG APR_UTIL_PAKAGE
 ARG APR_UTIL_PAKAGE_FILE
 ARG APR_UTIL_URL
@@ -107,11 +105,9 @@ RUN set -x; \
 
 # Install pcre
 ARG PCRE
-ARG PCRE_VERSION
 ARG PCRE_PAKAGE
 ARG PCRE_PAKAGE_FILE
 ARG PCRE_URL
-ARG PCRE_SIG_URL
 
 RUN set -x; \
       . ~/.bashrc \
@@ -152,7 +148,6 @@ RUN set -x; \
 
 # Install Apache
 ARG APACHE
-ARG APACHE_VERSION
 ARG APACHE_PAKAGE
 ARG APACHE_PAKAGE_FILE
 ARG APACHE_URL

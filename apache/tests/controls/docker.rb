@@ -14,7 +14,7 @@ control 'docker' do
     its('image')   { should eq ENV['D_IMAGE'] }
     its('repo')    { should eq ENV['APACHE'] }
     its('tag')     { should eq ENV['APACHE_VERSION'] }
-    #its('ports')   { should eq [] }
+    its('ports')   { should eq '80/tcp' }
     its('command') { should eq '/usr/local/httpd/bin/apachectl -D FOREGROUND' }
   end
 
