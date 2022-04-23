@@ -7,11 +7,9 @@ FROM common AS  build
 
 # Install pcre
 ARG PCRE
-ARG PCRE_VERSION
 ARG PCRE_PAKAGE
 ARG PCRE_PAKAGE_FILE
 ARG PCRE_URL
-ARG PCRE_SIG_URL
 
 RUN set -x; \
       . ~/.bashrc \
@@ -52,7 +50,6 @@ RUN set -x; \
 # nginxのインストール
 ##################################################
 ARG NGINX
-ARG NGINX_VERSION
 ARG NGINX_PAKAGE
 ARG NGINX_PAKAGE_FILE
 ARG NGINX_URL
