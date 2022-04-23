@@ -15,8 +15,8 @@
 set -eu
 
 # Load some environmental values
-source ./gcc/hooks/env.sh
+. ./gcc/hooks/env.sh
 
 # Register in Docker Hub
-source ./gcc/../lib/dockerhub.sh
+. ./gcc/../lib/dockerhub.sh
 pushImage ${DOCKER_USER} ${DOCKER_PASS} ${D_IMAGE} ${GCC} ${GCC_VERSION} ${GCC_LATEST}
