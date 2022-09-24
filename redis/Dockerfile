@@ -9,7 +9,6 @@ FROM common AS  build
 # redisのインストール
 ##################################################
 ARG REDIS
-ARG REDIS_VERSION
 ARG REDIS_PAKAGE
 ARG REDIS_PAKAGE_FILE
 ARG REDIS_URL

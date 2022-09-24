@@ -11,7 +11,6 @@
 echo "Building a docker image"
 docker image build . \
 --build-arg PHP=${PHP} \
---build-arg PHP_VERSION=${PHP_VERSION} \
 --build-arg PHP_PAKAGE=${PHP_PAKAGE} \
 --build-arg PHP_PAKAGE_FILE=${PHP_PAKAGE_FILE} \
 --build-arg PHP_URL=${PHP_URL} \
