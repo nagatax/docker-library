@@ -33,12 +33,12 @@ export PCRE_PAKAGE_FILE="${PCRE_PAKAGE}.tar.gz"
 export PCRE_URL="https://sourceforge.net/projects/pcre/files/${PCRE}/${PCRE_VERSION}/${PCRE_PAKAGE_FILE}/download"
 ## apache
 export APACHE="httpd"
-export APACHE_VERSION="2.4.53"
+export APACHE_VERSION="2.4.54"
 export APACHE_PAKAGE="${APACHE}-${APACHE_VERSION}"
 export APACHE_PAKAGE_FILE="${APACHE_PAKAGE}.tar.gz"
 export APACHE_URL="https://dlcdn.apache.org/${APACHE}/${APACHE_PAKAGE_FILE}"
-export APACHE_SHA256="7a045e8e653aaf931f9667f3a7e1943bd81306bf908f316465f737a854d10c16"
+export APACHE_SHA256="c687b99c446c0ef345e7d86c21a8e15fc074b7d5152c4fe22b0463e2be346ffb"
 
 # BUILD Setting
-export APACHE_LATEST="2.4.53"
+export APACHE_LATEST="2.4.54"
 export D_IMAGE=${APACHE}:${APACHE_VERSION}
