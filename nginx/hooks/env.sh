@@ -19,11 +19,11 @@ export PCRE_PAKAGE_FILE="${PCRE_PAKAGE}.tar.gz"
 export PCRE_URL="https://sourceforge.net/projects/pcre/files/${PCRE}/${PCRE_VERSION}/${PCRE_PAKAGE_FILE}/download"
 ## nginx
 export NGINX="nginx"
-export NGINX_VERSION="1.23.1"
+export NGINX_VERSION="1.24.0"
 export NGINX_PAKAGE="${NGINX}-${NGINX_VERSION}"
 export NGINX_PAKAGE_FILE="${NGINX_PAKAGE}.tar.gz"
 export NGINX_URL="https://nginx.org/download/${NGINX_PAKAGE_FILE}"
 
 # BUILD Setting
-export NGINX_LATEST="1.23.1"
+export NGINX_LATEST="1.24.0"
 export D_IMAGE=${NGINX}:${NGINX_VERSION}
