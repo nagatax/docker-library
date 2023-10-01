@@ -1,0 +1,44 @@
+name: nagatax/docker-library/build-and-test-and-deploy
+
+on:
+  push
+
+jobs:
+  setup:
+    runs-on: ubuntu-latest
+    outputs:
+      service_name: ${{ steps.step1.outputs.service_name }}
+    steps:
+      - id: step1
+        run: |
+          if [ "${{ contains(github.ref_name, 'apache-') }}" = "true" ] ; then
+            echo "service_name=apache" >> "$GITHUB_OUTPUT"
+          elif [ "${{ contains(github.ref_name, 'nginx-') }}" = "true" ] ; then
+            echo "service_name=nginx" >> "$GITHUB_OUTPUT"
+          elif [ "${{ contains(github.ref_name, 'php-') }}" = "true" ] ; then
+            echo "service_name=php" >> "$GITHUB_OUTPUT"
+          elif [ "${{ contains(github.ref_name, 'redis-') }}" = "true" ] ; then
+            echo "service_name=redis" >> "$GITHUB_OUTPUT"
+          else
+            echo "invalid service name"
+          fi
+
+  build_test_deploy:
+    needs: setup
+    runs-on: ubuntu-latest
+    env:
+      DOCKER_USER: ${{ secrets.DOCKER_USER }}
+      DOCKER_PASS: ${{ secrets.DOCKER_PASS }}
+    steps:
+      - uses: actions/checkout@v4.1.0
+      - name: Building Docker
+        run: source ./${{ needs.setup.outputs.service_name }}/hooks/build
+      - name: Set up inspec environment
+        run: |
+          sudo gem install bundler
+          bundle config set --local path 'vendor/bundler'
+          bundle install
+      - name: Testing Docker
+        run: source ./${{ needs.setup.outputs.service_name }}/hooks/post_build
+      - name: Deploy to Docker Hub
+        run: source ./${{ needs.setup.outputs.service_name }}/hooks/deploy
