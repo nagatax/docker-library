@@ -1,0 +1,114 @@
+name: nagatax/docker-library/build-and-test-and-deploy
+on:
+  push:
+    branches:
+    - master
+jobs:
+  build-apache:
+    if: github.ref == 'refs/heads/apache/master'
+    runs-on: ubuntu-latest
+    container:
+      image: docker:stable-git
+    env:
+      DOCKER_PASS:
+      DOCKER_USER:
+    steps:
+    - uses: actions/checkout@v4.1.0
+#     # 'setup_remote_docker' was not transformed because there is no suitable equivalent in GitHub Actions
+    - name: Building Docker
+      run: source ./apache/hooks/build
+    - name: Update system
+      run: |-
+        apk update
+        apk upgrade
+    - name: Set up inspec environment
+      run: |-
+        apk add build-base git libffi-dev libxml2-dev openssh-client ruby ruby-bigdecimal ruby-dev ruby-etc ruby-rdoc ruby-webrick
+        gem install bundler
+        bundle config set --local path 'vendor/bundler'
+        bundle install
+    - name: Testing Docker
+      run: source ./apache/hooks/post_build
+    - name: Deploy to Docker Hub
+      run: source ./apache/hooks/deploy
+  build-nginx:
+    if: github.ref == 'refs/heads/nginx/master'
+    runs-on: ubuntu-latest
+    container:
+      image: docker:stable-git
+    env:
+      DOCKER_PASS:
+      DOCKER_USER:
+    steps:
+    - uses: actions/checkout@v4.1.0
+#     # 'setup_remote_docker' was not transformed because there is no suitable equivalent in GitHub Actions
+    - name: Building Docker
+      run: source ./nginx/hooks/build
+    - name: Update system
+      run: |-
+        apk update
+        apk upgrade
+    - name: Set up inspec environment
+      run: |-
+        apk add build-base git libffi-dev libxml2-dev openssh-client ruby ruby-bigdecimal ruby-dev ruby-etc ruby-rdoc ruby-webrick
+        gem install bundler
+        bundle config set --local path 'vendor/bundler'
+        bundle install
+    - name: Testing Docker
+      run: source ./nginx/hooks/post_build
+    - name: Deploy to Docker Hub
+      run: source ./nginx/hooks/deploy
+  build-php:
+    if: github.ref == 'refs/heads/php/master'
+    runs-on: ubuntu-latest
+    container:
+      image: docker:stable-git
+    env:
+      DOCKER_PASS:
+      DOCKER_USER:
+    steps:
+    - uses: actions/checkout@v4.1.0
+#     # 'setup_remote_docker' was not transformed because there is no suitable equivalent in GitHub Actions
+    - name: Building Docker
+      run: source ./php/hooks/build
+    - name: Update system
+      run: |-
+        apk update
+        apk upgrade
+    - name: Set up inspec environment
+      run: |-
+        apk add build-base git libffi-dev libxml2-dev openssh-client ruby ruby-bigdecimal ruby-dev ruby-etc ruby-rdoc ruby-webrick
+        gem install bundler
+        bundle config set --local path 'vendor/bundler'
+        bundle install
+    - name: Testing Docker
+      run: source ./php/hooks/post_build
+    - name: Deploy to Docker Hub
+      run: source ./php/hooks/deploy
+  build-redis:
+    if: github.ref == 'refs/heads/redis/master'
+    runs-on: ubuntu-latest
+    container:
+      image: docker:stable-git
+    env:
+      DOCKER_PASS:
+      DOCKER_USER:
+    steps:
+    - uses: actions/checkout@v4.1.0
+#     # 'setup_remote_docker' was not transformed because there is no suitable equivalent in GitHub Actions
+    - name: Building Docker
+      run: source ./redis/hooks/build
+    - name: Update system
+      run: |-
+        apk update
+        apk upgrade
+    - name: Set up inspec environment
+      run: |-
+        apk add build-base git libffi-dev libxml2-dev openssh-client ruby ruby-bigdecimal ruby-dev ruby-etc ruby-rdoc ruby-webrick
+        gem install bundler
+        bundle config set --local path 'vendor/bundler'
+        bundle install
+    - name: Testing Docker
+      run: source ./redis/hooks/post_build
+    - name: Deploy to Docker Hub
+      run: source ./redis/hooks/deploy
