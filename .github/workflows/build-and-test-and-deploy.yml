@@ -1,7 +1,9 @@
 name: nagatax/docker-library/build-and-test-and-deploy
 
 on:
-  push
+  push:
+    branches:
+      - 'feature/**'
 
 jobs:
   setup:
